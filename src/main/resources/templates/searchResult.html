@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>검색 결과</title>
+</head>
+    <body>
+        <h1>검색 결과</h1>
+        <table th:if="${#lists.isEmpty(searchResult)}">
+            <tr>
+                <td colspan="2">검색 결과가 존재하지 않습니다.</td>
+            </tr>
+        </table>
+        <table th:unless="${#lists.isEmpty(searchResult)}">
+            <thead>
+                <tr>
+                    <th>음식 이름</th>
+                    <th>가게 이름</th>
+                    <!-- Add more table headers if needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="result : ${searchResult}">
+                    <td th:text="${result.foodName}"></td>
+                    <td th:text="${result.storeName}"></td>
+                    <!-- Add more table cells if needed -->
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

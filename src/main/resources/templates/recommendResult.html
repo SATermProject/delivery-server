@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>추천 내역</title>
+</head>
+<body>
+<h1>추천 음식 및 가게</h1>
+<h3>user_Id 님이 가장 많이 검색한 음식 및 가게 추천</h3>
+<table th:if="${#lists.isEmpty(mostFrequentFoodName)} or ${#lists.isEmpty(mostFrequentStoreName)}">
+    <tr>
+        <td colspan="2">추천 결과가 존재하지 않습니다.</td>
+    </tr>
+</table>
+<table th:unless="${#lists.isEmpty(mostFrequentFoodName)} or ${#lists.isEmpty(mostFrequentStoreName)}">
+    <thead>
+    <tr>
+        <th>음식 이름</th>
+        <th>가게 이름</th>
+    </tr>
+    </thead>
+    <tbody>
+        <td th:text="${mostFrequentStoreName}"></td>
+        <td th:text="${mostFrequentFoodName}"></td>
+    </tbody>
+</table>
+
+<h3>같은 카테고리의 다른 음식 및 가게 추천</h3>
+<table th:if="${#lists.isEmpty(otherDataList)}">
+    <tr>
+        <td colspan="2">추천 결과가 존재하지 않습니다.</td>
+    </tr>
+</table>
+<table th:unless="${#lists.isEmpty(mostFrequentFoodName)} or ${#lists.isEmpty(mostFrequentStoreName)} or ${#lists.isEmpty(otherDataList)}">
+    <thead>
+    <tr>
+        <th>음식 이름</th>
+        <th>가게 이름</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="otherData : ${otherDataList}">
+        <td th:text="${otherData.foodName}"></td>
+        <td th:text = "${otherData.storeName}"></td>
+    </tbody>
+</table>
+</body>
+</html>
