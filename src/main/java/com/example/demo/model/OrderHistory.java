@@ -5,16 +5,17 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "search_History")
-public class SearchHistory {
+public class OrderHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private Long userId;
+    private User user;
 
-    @Column(name = "search_Keyword")
-    private String searchKeyword;
+    @ManyToOne
+    @JoinColumn(name = "food_id")
+    private Food food;
 }

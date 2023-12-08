@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -12,17 +10,14 @@ public class Review {
     @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    private Long id;
 
     private int rating;
-    private int restaurantID;
-    private int foodID;
+    private String content;
 
-    public void setID(Integer id) {
-        this.ID = id;
-    }
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
-    public Integer getID() {
-        return ID;
-    }
+    @JoinColumn(name = "food_id")
+    private Food food;
 }

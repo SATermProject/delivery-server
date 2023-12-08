@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.strategy;
 
 import com.example.demo.model.Food;
 import com.example.demo.model.Review;
@@ -11,11 +11,12 @@ import java.util.Comparator;
 import java.util.List;
 
 @Component
-public class RatingRecommendationStrategy implements RecommendationStrategy{
+public class RatingRecommendationStrategy implements RecommendationStrategy {
     @Autowired
     private FoodRepository foodRepository; // Food 엔터티를 다루기 위한 Repository
     @Autowired
     private ReviewRepository reviewRepository; // Review 엔터티를 다루기 위한 Repository
+
     @Override
     public List<Food> recommend() {
         // 모든 가게의 리뷰와 평점 정보 가져오기
@@ -33,7 +34,7 @@ public class RatingRecommendationStrategy implements RecommendationStrategy{
     }
     private double calculateAverageRating(Food food) {
         // 해당 가게의 모든 리뷰 가져오기
-        List<Review> reviews = reviewRepository.findByRestaurantID(food.getID());
+        List<Review> reviews = reviewRepository.findByRestaurantID((food.getId().intValue()));
 
         // 리뷰가 없으면 기본값 반환
         if (reviews.isEmpty()) {
