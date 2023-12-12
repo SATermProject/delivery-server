@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.SearchHistory;
 import com.example.demo.model.StoreData;
+import com.example.demo.repository.FoodDataRepository;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.SearchHistoryRepository;
 import com.example.demo.repository.StoreRepository;
@@ -14,7 +15,7 @@ import java.util.*;
 public class SearchService {
 
     @Autowired
-    private FoodRepository foodRepository;
+    private FoodDataRepository foodDataRepository;
 
     @Autowired
     private StoreRepository storeRepository;
@@ -23,17 +24,16 @@ public class SearchService {
     private SearchHistoryRepository searchHistoryRepository;
 
     @Autowired
-    public SearchService(FoodRepository foodRepository) {
-        this.foodRepository = foodRepository;
+    public SearchService(FoodDataRepository foodDataRepository) {
+        this.foodDataRepository = foodDataRepository;
         this.storeRepository = storeRepository;
     }
 
     public List<String> findStoreNamesByKeyword(String keyword) {
         String formattedKeyword = "%" + keyword + "%";
-        List<String> foodStoreNames = foodRepository.findByStoreNamesFromFoodContaining(formattedKeyword);
+        List<String> foodStoreNames = foodDataRepository.findByStoreNamesFromFoodContaining(formattedKeyword);
         List<String> storeStoreNames = storeRepository.findByStoreNamesFromStoreContaining(formattedKeyword);
 
-        // 두 리스트를 합치기
         List<String> mergedStoreNames = new ArrayList<>(foodStoreNames);
         mergedStoreNames.addAll(storeStoreNames);
 

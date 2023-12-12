@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
-public interface FoodRepository_minjin extends JpaRepository<FoodData, Long> {
+public interface FoodDataRepository extends JpaRepository<FoodData, Long> {
 
     @Query("SELECT DISTINCT f.store.storeName FROM FoodData f WHERE f.foodName LIKE %:keyword% OR f.categoryName LIKE %:keyword% OR f.foodName LIKE CONCAT('%', :keyword, '%') OR f.categoryName LIKE CONCAT('%', :keyword, '%')")
     List<String> findByStoreNamesFromFoodContaining(@Param("keyword") String keyword);}
