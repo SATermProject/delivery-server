@@ -10,11 +10,8 @@ public class SearchHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long search_Id;
 
-    @JoinColumn(name = "user_id")
-    private Long userId;
-
-    @Column(name = "search_Keyword")
-    private String searchKeyword;
-}
+    @Column(name = "searched_Store")
+    private String searchedStore;
+   }
