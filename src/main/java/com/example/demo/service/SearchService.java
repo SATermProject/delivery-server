@@ -46,7 +46,7 @@ public class SearchService {
 
     public void addSearchedStoreToSearchHistory(String searchedStoreName) {
         SearchHistory searchHistory = new SearchHistory();
-        searchHistory.setSearchedStore(searchedStoreName);
+        searchHistory.setSearchedRestaurant(searchedStoreName);
         searchHistoryRepository.save(searchHistory);
     }
 

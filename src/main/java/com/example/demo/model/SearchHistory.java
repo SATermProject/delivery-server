@@ -12,6 +12,6 @@ public class SearchHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long searchId;
 
-    @Column(name = "searched_Store")
-    private String searchedStore;
+    @Column(name = "searched_Restaurant")
+    private String searchedRestaurant;
    }

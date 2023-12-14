@@ -24,10 +24,10 @@ public class Food {
     @Column(name = "category_Name")
     private String categoryName;
 
-    @Column(name = "store_Id")
-    private String storeId;
+    @Column(name = "restaurant_Id")
+    private String restaurantId;
 
     @ManyToOne
-    @JoinColumn (name = "restaurnat_Id",insertable=false, updatable=false)
+    @JoinColumn (name = "restaurant_Id", insertable=false, updatable=false)
     private Restaurant restaurant;
 }

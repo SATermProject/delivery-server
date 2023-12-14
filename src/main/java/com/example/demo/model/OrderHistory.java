@@ -21,6 +21,6 @@ public class OrderHistory {
     private Food food;
 
     @ManyToOne
-    @JoinColumn(name = "restaurantId")
+    @JoinColumn(name = "restaurant_Id")
     private Restaurant restaurant;
 }

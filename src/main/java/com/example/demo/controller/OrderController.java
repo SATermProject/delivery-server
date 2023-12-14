@@ -19,10 +19,10 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/{storeId}/{foodId}/order")
-    public ResponseEntity<String> saveOrder(@PathVariable Long storeId,
+    @GetMapping("/{restaurantId}/{foodId}/order")
+    public ResponseEntity<String> saveOrder(@PathVariable Long restaurantId,
                                              @PathVariable Long foodId) {
-        orderService.saveOrder(storeId, foodId);
+        orderService.saveOrder(restaurantId, foodId);
         return ResponseEntity.ok("주문이 완료되었습니다.");
     }
 }

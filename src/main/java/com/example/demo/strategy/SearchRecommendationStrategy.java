@@ -19,10 +19,10 @@ public class SearchRecommendationStrategy implements RecommendStrategyInterface{
 
     @Override
     public List<Object[]> searchRecommend() {
-        String queryString = "SELECT searchedStore " +
+        String queryString = "SELECT searchedRestaurant " +
                 "FROM SearchHistory " +
-                "GROUP BY searchedStore " +
-                "ORDER BY COUNT(searchedStore) DESC";
+                "GROUP BY searchedRestaurant " +
+                "ORDER BY COUNT(searchedRestaurant) DESC";
 
         TypedQuery<Object[]> query = entityManager.createQuery(queryString, Object[].class);
         return query.getResultList();
