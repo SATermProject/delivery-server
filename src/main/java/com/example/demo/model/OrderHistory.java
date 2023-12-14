@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "OderHistory")
 public class OrderHistory {
 
     @Id
@@ -18,4 +19,8 @@ public class OrderHistory {
     @ManyToOne
     @JoinColumn(name = "food_id")
     private Food food;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurantId")
+    private Restaurant restaurant;
 }

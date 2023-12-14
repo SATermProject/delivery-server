@@ -6,6 +6,7 @@ import com.example.demo.model.Restaurant;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 

@@ -1,11 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Restaurant;
 import com.example.demo.model.SearchHistory;
-import com.example.demo.model.StoreData;
-import com.example.demo.repository.FoodDataRepository;
 import com.example.demo.repository.FoodRepository;
+import com.example.demo.repository.RestaurantRepository;
 import com.example.demo.repository.SearchHistoryRepository;
-import com.example.demo.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +14,24 @@ import java.util.*;
 public class SearchService {
 
     @Autowired
-    private FoodDataRepository foodDataRepository;
+    private FoodRepository foodRepository;
 
     @Autowired
-    private StoreRepository storeRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
     private SearchHistoryRepository searchHistoryRepository;
 
     @Autowired
-    public SearchService(FoodDataRepository foodDataRepository) {
-        this.foodDataRepository = foodDataRepository;
-        this.storeRepository = storeRepository;
+    public SearchService(FoodRepository foodDataRepository) {
+        this.foodRepository = foodDataRepository;
+        this.restaurantRepository = restaurantRepository;
     }
 
     public List<String> findStoreNamesByKeyword(String keyword) {
         String formattedKeyword = "%" + keyword + "%";
-        List<String> foodStoreNames = foodDataRepository.findByStoreNamesFromFoodContaining(formattedKeyword);
-        List<String> storeStoreNames = storeRepository.findByStoreNamesFromStoreContaining(formattedKeyword);
+        List<String> foodStoreNames = foodRepository.findByRestaurantNamesFromFoodContaining(formattedKeyword);
+        List<String> storeStoreNames = restaurantRepository.findByRestaurantNamesFromRestaurantContaining(formattedKeyword);
 
         List<String> mergedStoreNames = new ArrayList<>(foodStoreNames);
         mergedStoreNames.addAll(storeStoreNames);
@@ -51,8 +50,8 @@ public class SearchService {
         searchHistoryRepository.save(searchHistory);
     }
 
-    public String retrieveStoreNameById(Long storeId) {
-        Optional<StoreData> storeOptional = storeRepository.findById(storeId);
-        return storeOptional.map(StoreData::getStoreName).orElse(null);
+    public String retrieveStoreNameById(Long restaurantId) {
+        Optional<Restaurant> restaurantOptional = restaurantRepository.findById(restaurantId);
+        return restaurantOptional.map(Restaurant::getRestaurantName).orElse(null);
     }
 }

@@ -26,7 +26,6 @@ public class SearchController {
     }
 
 
-    //여기부터 다시 보면 됨 이제
     @GetMapping("/search/{storeId}")
     public void saveSearchedStoreToSearchHistory(@PathVariable Long storeId) {
 
@@ -35,7 +34,7 @@ public class SearchController {
         if (searchedStoreName != null) {
             searchService.addSearchedStoreToSearchHistory(searchedStoreName);
         } else {
-            // 가게를 찾을 수 없는 경우에 대한 예외 처리
+            // 예외 처리
         }
     }
 }

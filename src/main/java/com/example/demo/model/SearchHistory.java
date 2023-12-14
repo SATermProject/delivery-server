@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "search_History")
+@Table(name = "SearchHistory")
 public class SearchHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long search_Id;
+    private Long searchId;
 
     @Column(name = "searched_Store")
     private String searchedStore;

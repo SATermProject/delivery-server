@@ -12,12 +12,15 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int rating;
+    private Long rating;
+
     private String content;
 
+    @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    @ManyToOne
     @JoinColumn(name = "food_id")
     private Food food;
 }
