@@ -18,7 +18,7 @@ public class Review {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id")
+    @JoinColumn(name = "restaurant_Id", insertable=false, updatable=false)
     private Restaurant restaurant;
 
     @ManyToOne

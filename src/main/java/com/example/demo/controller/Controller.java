@@ -5,12 +5,11 @@ import com.example.demo.model.Review;
 import com.example.demo.model.Food;
 import com.example.demo.model.User;
 import com.example.demo.repository.*;
-import com.example.demo.service.RecommendService;
+import com.example.demo.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,7 +25,7 @@ public class Controller {
     @Autowired
     private RestaurantRepository restaurantRepository;
     @Autowired
-    private RecommendService recommendService;
+    private RecommendationService recommendationService;
     @Autowired
     private UserRepository userRepository;
     @Autowired

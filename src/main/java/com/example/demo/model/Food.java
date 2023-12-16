@@ -5,6 +5,8 @@ import lombok.Data;
 import org.apache.catalina.Store;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 
 @Entity
 @Data
@@ -27,4 +29,7 @@ public class Food {
     @ManyToOne
     @JoinColumn (name = "restaurant_Id", insertable=false, updatable=false)
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "food")
+    private List<OrderHistory> orderHistories;
 }

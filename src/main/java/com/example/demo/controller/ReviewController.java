@@ -4,7 +4,7 @@ import com.example.demo.model.OrderHistory;
 import com.example.demo.model.Restaurant;
 import com.example.demo.model.Review;
 import com.example.demo.repository.*;
-import com.example.demo.service.RecommendService;
+import com.example.demo.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class ReviewController {
     @Autowired
     private RestaurantRepository restaurantRepository;
     @Autowired
-    private RecommendService recommendService;
+    private RecommendationService recommendationService;
     @Autowired
     private UserRepository userRepository;
     @Autowired

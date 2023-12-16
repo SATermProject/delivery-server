@@ -30,4 +30,10 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Food> foods;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<OrderHistory> orderHistories;
 }

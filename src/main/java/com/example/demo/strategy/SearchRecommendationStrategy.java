@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("SearchRecommendationStrategy")
-public class SearchRecommendationStrategy implements RecommendStrategyInterface{
+@Component("searchRecommendationStrategy")
+public class SearchRecommendationStrategy implements RecommendStrategy {
 
     private final EntityManager entityManager;
 
@@ -18,7 +18,7 @@ public class SearchRecommendationStrategy implements RecommendStrategyInterface{
     }
 
     @Override
-    public List<Object[]> searchRecommend() {
+    public List<Object[]> recommend() {
         String queryString = "SELECT searchedRestaurant " +
                 "FROM SearchHistory " +
                 "GROUP BY searchedRestaurant " +

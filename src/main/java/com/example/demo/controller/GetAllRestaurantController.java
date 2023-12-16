@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class GetAllRestaurantController {
 
-    private GetAllRestaurantService getAllRestaurantService;
+    private final GetAllRestaurantService getAllRestaurantService;
 
     @Autowired
     public GetAllRestaurantController(GetAllRestaurantService getAllRestaurantService) {

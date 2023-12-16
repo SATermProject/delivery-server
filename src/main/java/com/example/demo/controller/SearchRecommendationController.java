@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.strategy.SearchRecommendationStrategy;
+import com.example.demo.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,17 +13,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class SearchRecommendationController {
 
-    private SearchRecommendationStrategy searchRecommendationStrategy;
+    private final RecommendationService recommendationService;
 
     @Autowired
-    public SearchRecommendationController(SearchRecommendationStrategy searchRecommendationStrategy) {
-        this.searchRecommendationStrategy = searchRecommendationStrategy;
+    public SearchRecommendationController(RecommendationService recommendationService) {
+        this.recommendationService = recommendationService;
     }
 
     @GetMapping("/searchRecommendation")
     @ResponseBody
     public List<Object[]> recommend() {
-        return searchRecommendationStrategy.searchRecommend();
+        return recommendationService.getRecommendation("searchRecommendationStrategy");
     }
-
 }

@@ -34,7 +34,7 @@ public class SearchController {
         if (searchedStoreName != null) {
             searchService.addSearchedStoreToSearchHistory(searchedStoreName);
         } else {
-            // 예외 처리
-        }
+            System.out.println("검색어 저장 실패");
+        } //혹시나 해서 예외처리 넣긴 했는데 예외가 발생할 일이 없긴함
     }
 }

@@ -13,18 +13,18 @@ public class OrderHistory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable=false, updatable=false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "food_id")
+    @JoinColumn(name = "food_id",insertable=false, updatable=false)
     private Food food;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_Id")
+    @JoinColumn(name = "restaurant_Id",insertable=false, updatable=false)
     private Restaurant restaurant;
 
     @OneToOne
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "review_id",insertable=false, updatable=false)
     private Review review;
 }
