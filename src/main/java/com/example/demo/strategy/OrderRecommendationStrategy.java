@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-
+@Component
 public class OrderRecommendationStrategy implements RecommendationStrategy {
 
     //자동 DI
@@ -20,11 +20,15 @@ public class OrderRecommendationStrategy implements RecommendationStrategy {
 
     private Long userId;
 
+    /*
+    임시 주석 처리
     public OrderRecommendationStrategy(Long userId) {
         this.userId = userId;
     }
 
-    public List<Food> recommend() {
+     */
+
+    public List<Restaurant> recommend() {
         List<OrderHistory> orders = orderRepository.findByUserId(userId);
 
         // 레스토랑별로 음식 주문 횟수 및 총 주문 횟수를 저장할 맵
@@ -47,6 +51,9 @@ public class OrderRecommendationStrategy implements RecommendationStrategy {
 
         List<Food> recommendedFoods = new ArrayList<>();
 
+        /*
+        일단 테스트용으로 잠시 주석처리 해놨습니다!
+
         for (Restaurant restaurant : sortedRestaurants) {
             Map<Food, Integer> foodCounts = orderCountPerRestaurant.get(restaurant);
 
@@ -55,7 +62,9 @@ public class OrderRecommendationStrategy implements RecommendationStrategy {
             recommendedFoods.add(mostOrderedFood);
         }
 
-        return recommendedFoods;
+         */
+
+        return sortedRestaurants;
     }
 
 }

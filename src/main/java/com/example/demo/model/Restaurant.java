@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -26,6 +27,7 @@ public class Restaurant {
     @Column(name = "category_Name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "restaurantId")
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Food> foods;
 }
