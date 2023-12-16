@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -21,6 +22,7 @@ public class Review {
     private Restaurant restaurant;
 
     @ManyToOne
-    @JoinColumn(name = "food_id")
-    private Food food;
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 }

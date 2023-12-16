@@ -24,9 +24,6 @@ public class Food {
     @Column(name = "category_Name")
     private String categoryName;
 
-    @Column(name = "restaurant_Id")
-    private String restaurantId;
-
     @ManyToOne
     @JoinColumn (name = "restaurant_Id", insertable=false, updatable=false)
     private Restaurant restaurant;
