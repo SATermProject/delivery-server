@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,4 +15,7 @@ public class User {
 
     private String nickname;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<OrderHistory> orderHistories;
 }

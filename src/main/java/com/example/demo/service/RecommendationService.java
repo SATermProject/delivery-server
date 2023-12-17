@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.strategy.RecommendStrategy;
+import com.example.demo.model.Restaurant;
+import com.example.demo.strategy.RecommendationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,15 @@ import java.util.Map;
 public class RecommendationService {
 
     @Autowired
-    private Map<String, RecommendStrategy> strategies;
+    private Map<String, RecommendationStrategy> strategies;
 
     @Autowired
-    public RecommendationService(Map<String, RecommendStrategy> strategies) {
+    public RecommendationService(Map<String, RecommendationStrategy> strategies) {
         this.strategies = strategies;
     }
 
-    public List<Object[]> getRecommendation(String strategyName) {
-        RecommendStrategy strategy = strategies.get(strategyName);
+    public List<Restaurant> getRecommendation(String strategyName) {
+        RecommendationStrategy strategy = strategies.get(strategyName);
         if (strategy != null) {
             return strategy.recommend();
         } else {

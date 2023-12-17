@@ -38,4 +38,22 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant",  cascade = CascadeType.ALL)
     @JsonIgnore
     private List<OrderHistory> orderHistories;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant")
+    private List<SearchHistory> searchHistories;
+
+    public Long getRestaurantId() {
+        return restaurantId;
+    }
+
+    public Restaurant() {
+    }
+
+    public Restaurant(Long restaurantId, String restaurantName, Long categoryId, String categoryName) {
+        this.restaurantId = restaurantId;
+        this.restaurantName = restaurantName;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+    }
 }

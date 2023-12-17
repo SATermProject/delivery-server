@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,4 +15,9 @@ public class SearchHistory {
 
     @Column(name = "searched_Restaurant")
     private String searchedRestaurant;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn (name = "restaurant_id")
+    private Restaurant restaurant;
    }

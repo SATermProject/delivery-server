@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Restaurant;
 import com.example.demo.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class SearchRecommendationController {
 
     @GetMapping("/searchRecommendation")
     @ResponseBody
-    public List<Object[]> recommend() {
+    public List<Restaurant> recommend() {
         return recommendationService.getRecommendation("searchRecommendationStrategy");
     }
 }

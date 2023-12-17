@@ -18,6 +18,7 @@ public class Review {
     private String content;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "restaurant_Id", insertable=false, updatable=false)
     private Restaurant restaurant;
 

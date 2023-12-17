@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,15 +14,18 @@ public class OrderHistory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable=false, updatable=false)
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "food_id",insertable=false, updatable=false)
+    @JsonIgnore
+    @JoinColumn(name = "food_id")
     private Food food;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_Id",insertable=false, updatable=false)
+    @JsonIgnore
+    @JoinColumn(name = "restaurant_Id")
     private Restaurant restaurant;
 
     @OneToOne

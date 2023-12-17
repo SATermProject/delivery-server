@@ -3,15 +3,16 @@ package com.example.demo.controller;
 import com.example.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 public class OrderController {
-    // 주문 기능 컨트롤러
 
     private final OrderService orderService;
 
@@ -20,10 +21,15 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/{restaurantId}/{foodId}/order")
-    public ResponseEntity<String> saveOrder(@PathVariable Long restaurantId,
-                                             @PathVariable Long foodId) {
-        orderService.saveOrder(restaurantId, foodId);
-        return ResponseEntity.ok("주문이 완료되었습니다.");
+    @PostMapping("/order")
+    public ResponseEntity<String> saveOrder(@RequestBody Map<String, Long> orderData) {
+
+        Long id = orderData.get("id");
+        Long restaurantId = orderData.get("restaurantId");
+        Long foodId = orderData.get("foodId");
+
+        orderService.saveOrder(id, restaurantId, foodId);
+
+        return ResponseEntity.ok("주문완료");
     }
 }

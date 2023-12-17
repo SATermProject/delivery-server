@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface FoodRepository extends JpaRepository<Food, Long> {
 
-    @Query("SELECT DISTINCT f.restaurant.restaurantName FROM Food f WHERE f.foodName LIKE %:keyword% OR f.categoryName LIKE %:keyword% OR f.foodName LIKE CONCAT('%', :keyword, '%') OR f.categoryName LIKE CONCAT('%', :keyword, '%')")
+    @Query("SELECT DISTINCT r.restaurantName " +
+            "FROM Food f " +
+            "JOIN f.restaurant r " +
+            "WHERE f.foodName LIKE %:keyword% OR f.categoryName LIKE %:keyword%")
     List<String> findByRestaurantNamesFromFoodContaining(@Param("keyword") String keyword);
+
 }

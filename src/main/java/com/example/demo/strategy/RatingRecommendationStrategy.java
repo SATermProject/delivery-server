@@ -1,6 +1,5 @@
 package com.example.demo.strategy;
 
-import com.example.demo.model.Food;
 import com.example.demo.model.Restaurant;
 import com.example.demo.model.Review;
 import com.example.demo.repository.FoodRepository;

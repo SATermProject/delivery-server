@@ -23,8 +23,8 @@ public class SearchService {
     private SearchHistoryRepository searchHistoryRepository;
 
     @Autowired
-    public SearchService(FoodRepository foodRepository, RestaurantRepository restaurantRepository) {
-        this.foodRepository = foodRepository;
+    public SearchService(FoodRepository foodDataRepository) {
+        this.foodRepository = foodDataRepository;
         this.restaurantRepository = restaurantRepository;
     }
 

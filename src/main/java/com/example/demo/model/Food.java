@@ -28,6 +28,11 @@ public class Food {
     private String categoryName;
 
     @ManyToOne
-    @JoinColumn (name = "restaurant_Id", insertable=false, updatable=false)
+    @JsonIgnore
+    @JoinColumn (name = "restaurant_Id",insertable=false, updatable=false)
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "food")
+    @JsonIgnore
+    private List<OrderHistory> orderHistories;
 }
