@@ -17,25 +17,25 @@ public class RecommendationController {
 
     @GetMapping("/recommendation/review/{userId}")
     @ResponseBody
-    public List<Restaurant> ReviewRecommend(@PathVariable Long userId) {
+    public List<Restaurant> ReviewRecommend(@PathVariable(value = "userId") Long userId) {
         return recommendationService.getRecommendation("reviewRecommendationStrategy", userId);
     }
 
     @GetMapping("/recommendation/search/{userId}")
     @ResponseBody
-    public List<Restaurant> searchRecommend(@PathVariable Long userId) {
+    public List<Restaurant> searchRecommend(@PathVariable(value = "userId") Long userId) {
         return recommendationService.getRecommendation("searchRecommendationStrategy", userId);
     }
 
     @GetMapping("/recommendation/order/{userId}")
     @ResponseBody
-    public List<Restaurant> orderRecommend(@PathVariable Long userId) {
+    public List<Restaurant> orderRecommend(@PathVariable(value = "userId") Long userId) {
         return recommendationService.getRecommendation("orderRecommendationStrategy", userId);
     }
 
     @GetMapping("/recommendation/rating/{userId}")
     @ResponseBody
-    public List<Restaurant> ratingRecommend(@PathVariable Long userId) {
+    public List<Restaurant> ratingRecommend(@PathVariable(value = "userId") Long userId) {
         return recommendationService.getRecommendation("ratingRecommendationStrategy", userId);
     }
 }

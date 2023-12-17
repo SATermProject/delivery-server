@@ -16,7 +16,7 @@ public class SearchController {
     private SearchService searchService;
 
     @PostMapping("/search")
-    public ResponseEntity<List<String>> findStoreNamesByKeyword(@RequestParam String keyword) {
+    public ResponseEntity<List<String>> findStoreNamesByKeyword(@RequestParam(value = "keyword") String keyword) {
 
         List<String> mergedStoreNames = searchService.findStoreNamesByKeyword(keyword);
 
