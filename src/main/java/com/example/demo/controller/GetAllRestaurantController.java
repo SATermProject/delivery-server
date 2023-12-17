@@ -20,7 +20,7 @@ public class GetAllRestaurantController {
         this.getAllRestaurantService = getAllRestaurantService;
     }
 
-    @GetMapping("/getAllRestaurant")
+    @GetMapping("/restaurants")
     public List<String> getAllRestaurant() {
         return getAllRestaurantService.getAllRestaurant();
     }
