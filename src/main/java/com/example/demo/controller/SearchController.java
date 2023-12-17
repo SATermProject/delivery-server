@@ -15,7 +15,7 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<List<String>> findStoreNamesByKeyword(@RequestParam(value = "keyword") String keyword) {
 
         List<String> mergedStoreNames = searchService.findStoreNamesByKeyword(keyword);
