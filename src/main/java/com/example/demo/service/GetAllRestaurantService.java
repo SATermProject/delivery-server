@@ -17,13 +17,17 @@ public class GetAllRestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public List<String> getAllRestaurantName() {
-        List<Restaurant> allStores = restaurantRepository.findAllBy();
-        List<String> storeNames = new ArrayList<>();
+    public List<String> getAllRestaurant() {
+        List<Restaurant> allStores = restaurantRepository.findAll();
+        List<String> restaurantDetails = new ArrayList<>();
 
         for (Restaurant store : allStores) {
-            storeNames.add(store.getRestaurantName());
+            String details = "Restaurant ID: " + store.getRestaurantId()
+                    + ", Name: " + store.getRestaurantName()
+                    + ", Category ID: " + store.getCategoryId()
+                    + ", Category Name: " + store.getCategoryName();
+            restaurantDetails.add(details);
         }
-        return storeNames;
+        return restaurantDetails;
     }
 }
