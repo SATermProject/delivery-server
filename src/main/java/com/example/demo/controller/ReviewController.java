@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.OrderHistory;
-import com.example.demo.model.Restaurant;
 import com.example.demo.model.Review;
-import com.example.demo.repository.*;
-import com.example.demo.service.RecommendationService;
 import com.example.demo.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -25,7 +21,7 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @GetMapping("/orderHistory/user/{userId}")
-    ResponseEntity<List<OrderHistory>> getOrdersByUserId(@PathVariable Long userId) {
+    ResponseEntity<List<OrderHistory>> getOrdersByUserId(@PathVariable(value = "userId") Long userId) {
         List<OrderHistory> userOrders = reviewService.getOrdersByUserId(userId);
 
         if (userOrders.isEmpty()) {
@@ -36,7 +32,7 @@ public class ReviewController {
     }
 
     @PostMapping("/review/{orderId}")
-    public ResponseEntity<String> createReviewForOrder(@PathVariable Long orderId, @RequestBody Review reviewRequest) {
+    public ResponseEntity<String> createReviewForOrder(@PathVariable(value = "orderId") Long orderId, @RequestBody Review reviewRequest) {
         int flag = reviewService.createReview(orderId, reviewRequest);
 
         if (flag == 0) {
