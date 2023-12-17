@@ -20,7 +20,7 @@ public class GetAllRestaurantController {
     }
 
     @GetMapping("/getAllRestaurant")
-    public List<String> getAllRestaurantName() {
-        return getAllRestaurantService.getAllRestaurantName();
+    public List<String> getAllRestaurant() {
+        return getAllRestaurantService.getAllRestaurant();
     }
 }
