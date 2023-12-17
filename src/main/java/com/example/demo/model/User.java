@@ -14,6 +14,4 @@ public class User {
 
     private String nickname;
 
-    @OneToMany(mappedBy = "user")
-    private List<OrderHistory> orderHistories;
 }

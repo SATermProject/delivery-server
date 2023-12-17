@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+    // 주문 기능 컨트롤러
 
     private final OrderService orderService;
 

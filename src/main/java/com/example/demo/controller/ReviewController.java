@@ -16,8 +16,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class ReviewController {
-    // 사용자의 주문 목록 Get 해오기
-    // & 해당 주문 목록 중에서 리뷰 작성 가능한 주문 기록 -> 리뷰 작성용 Controller
+    // 리뷰 관련 기능 Controller
+    // 1. 사용자의 주문 내역 Get 해오기
+    // 2. 해당 주문 목록 중에서 리뷰 작성 가능한 주문 기록 -> 리뷰 작성 (POST)
 
     @Autowired
     private ReviewRepository reviewRepository;

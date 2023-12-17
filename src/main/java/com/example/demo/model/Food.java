@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.apache.catalina.Store;
@@ -29,7 +30,4 @@ public class Food {
     @ManyToOne
     @JoinColumn (name = "restaurant_Id", insertable=false, updatable=false)
     private Restaurant restaurant;
-
-    @OneToMany(mappedBy = "food")
-    private List<OrderHistory> orderHistories;
 }

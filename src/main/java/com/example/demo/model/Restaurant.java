@@ -31,9 +31,11 @@ public class Restaurant {
     @JsonIgnore
     private List<Food> foods;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant",  cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<OrderHistory> orderHistories;
 }
