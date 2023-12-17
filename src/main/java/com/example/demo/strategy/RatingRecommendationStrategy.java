@@ -21,23 +21,14 @@ public class RatingRecommendationStrategy implements RecommendationStrategy {
     @Autowired
     private RestaurantRepository restaurantRepository;
     @Override
-    public List<Restaurant> recommend() {
+    public List<Restaurant> recommend(Long userID) {
         // 모든 가게의 리뷰와 평점 정보 가져오기
         List<Restaurant> allRestaurants = restaurantRepository.findAll();
 
         // 각 가게의 리뷰 평균 평점 계산하여 내림차순으로 정렬
         allRestaurants.sort(Comparator.comparingDouble(this::calculateAverageRating).reversed());
 
-        // 내림차순으로 정렬된 음식 리스트에서 상위 3개의 음식을 추천
-        int numberOfRecommendations = Math.min(allRestaurants.size(), 3);
-
-        // 상위 3개의 가게를 추천 리스트에 추가
-        List<Restaurant> recommendedRestaurants = new ArrayList<>();
-        for (int i = 0; i < numberOfRecommendations; i++) {
-            recommendedRestaurants.add(allRestaurants.get(i));
-        }
-
-        return recommendedRestaurants;
+        return allRestaurants;
     }
     private double calculateAverageRating(Restaurant restaurant) {
         // 해당 가게의 모든 리뷰 가져오기

@@ -27,7 +27,7 @@ public class ReviewRecommendationStrategy implements RecommendationStrategy{
     }
 
     @Override
-    public List<Restaurant> recommend() {
+    public List<Restaurant> recommend(Long userID) {
 
         String[] positiveKeywords = {"좋다", "좋아", "좋았", "좋습", "좋음", "맛있어", "맛있다", "맛있음", "맛있었", "맛있습", "만족해", "만족함", "만족했", "만족합", "추천합", "추천해", "추천함"};
         String[] negativeKeywords = {"별로", "맛없", "불만족", "그닥", "비추", "부족", "추천하지 않", "추천 안"};

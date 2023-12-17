@@ -14,15 +14,18 @@ public class RecommendationService {
     @Autowired
     private Map<String, RecommendationStrategy> strategies;
 
+    private Long userID;
+
     @Autowired
     public RecommendationService(Map<String, RecommendationStrategy> strategies) {
         this.strategies = strategies;
     }
 
-    public List<Restaurant> getRecommendation(String strategyName) {
+    public List<Restaurant> getRecommendation(String strategyName, Long userID) {
+        this.userID = userID;
         RecommendationStrategy strategy = strategies.get(strategyName);
         if (strategy != null) {
-            return strategy.recommend();
+            return strategy.recommend(userID);
         } else {
             throw new IllegalArgumentException("Invalid strategy name");
         }

@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class GetAllRestaurantController {
+    // 레스토랑 목록 불러오기
 
     private final GetAllRestaurantService getAllRestaurantService;
 

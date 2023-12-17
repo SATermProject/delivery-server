@@ -5,5 +5,5 @@ import com.example.demo.model.Restaurant;
 import java.util.List;
 
 public interface RecommendationStrategy {
-    List<Restaurant> recommend();
+    List<Restaurant> recommend(Long userID);
 }

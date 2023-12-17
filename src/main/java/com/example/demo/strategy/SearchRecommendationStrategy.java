@@ -19,7 +19,7 @@ public class SearchRecommendationStrategy implements RecommendationStrategy {
     }
 
     @Override
-    public List<Restaurant> recommend() {
+    public List<Restaurant> recommend(Long userID) {
         String queryString = "SELECT DISTINCT NEW com.example.demo.model.Restaurant(r.restaurantId, r.restaurantName, r.categoryId, r.categoryName) " +
                 "FROM SearchHistory sh " +
                 "JOIN Restaurant r ON sh.searchedRestaurant = r.restaurantName " +

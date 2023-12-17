@@ -20,15 +20,14 @@ public class OrderRecommendationStrategy implements RecommendationStrategy {
 
     private Long userId;
 
-    /*
-    임시 주석 처리
-    public OrderRecommendationStrategy(Long userId) {
-        this.userId = userId;
-    }
+    public List<Restaurant> recommend(Long userId) {
 
-     */
+        // userId가 null인지 체크하고 처리하는 로직 추가
+        if (userId == null) {
+            // 예외 처리 또는 기본값 설정 등
+            throw new IllegalArgumentException("userId cannot be null");
+        }
 
-    public List<Restaurant> recommend() {
         List<OrderHistory> orders = orderRepository.findByUserId(userId);
 
         // 레스토랑별로 음식 주문 횟수 및 총 주문 횟수를 저장할 맵
@@ -51,9 +50,6 @@ public class OrderRecommendationStrategy implements RecommendationStrategy {
 
         List<Food> recommendedFoods = new ArrayList<>();
 
-        /*
-        일단 테스트용으로 잠시 주석처리 해놨습니다!
-
         for (Restaurant restaurant : sortedRestaurants) {
             Map<Food, Integer> foodCounts = orderCountPerRestaurant.get(restaurant);
 
@@ -61,8 +57,6 @@ public class OrderRecommendationStrategy implements RecommendationStrategy {
             Food mostOrderedFood = Collections.max(foodCounts.entrySet(), Map.Entry.comparingByValue()).getKey();
             recommendedFoods.add(mostOrderedFood);
         }
-
-         */
 
         return sortedRestaurants;
     }
