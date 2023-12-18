@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Restaurant;
+import com.example.demo.model.User;
 import com.example.demo.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,16 @@ public class SearchController {
     @PostMapping("/search/saveSearchHistory")
     public void saveSearchedStoreToSearchHistory(@RequestBody Restaurant restaurant) {
 
-        Long restaurantId = restaurant.getRestaurantId();
-        String searchedStoreName = searchService.retrieveStoreNameById(restaurantId);
+        String searchedStoreName = searchService.retrieveStoreNameById(restaurant.getRestaurantId());
 
         if (searchedStoreName != null) {
-            searchService.addSearchedStoreToSearchHistory(searchedStoreName);
-            //System.out.println("검색어 저장 성공");
-        } else {
-            //System.out.println("검색어 저장 실패");
+            User user = restaurant.getUser();
+            if (searchedStoreName != null) {
+                searchService.addSearchedStoreToSearchHistory(searchedStoreName, restaurant, user);
+                //System.out.println("검색어 저장 성공");
+            } else {
+                //System.out.println("검색어 저장 실패");
+            }
         }
     }
 }

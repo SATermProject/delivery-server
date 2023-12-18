@@ -6,6 +6,7 @@ import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component("searchRecommendationStrategy")
@@ -18,15 +19,39 @@ public class SearchRecommendationStrategy implements RecommendationStrategy {
         this.entityManager = entityManager;
     }
 
+//    @Override
+//    public List<Restaurant> recommend(Long userID) {
+//        String queryString = "SELECT DISTINCT NEW com.example.demo.model.Restaurant(r.restaurantId, r.restaurantName, r.categoryId, r.categoryName) " +
+//                "FROM SearchHistory sh " +
+//                "JOIN Restaurant r ON sh.searchedRestaurant = r.restaurantName " +
+//                "WHERE r.restaurantName = sh.searchedRestaurant";
+//
+//        TypedQuery<Restaurant> query = entityManager.createQuery(queryString, Restaurant.class);
+//        List<Restaurant> resultList = query.getResultList();
+//        return resultList;
+//    }
+
     @Override
     public List<Restaurant> recommend(Long userID) {
-        String queryString = "SELECT DISTINCT NEW com.example.demo.model.Restaurant(r.restaurantId, r.restaurantName, r.categoryId, r.categoryName) " +
+        String queryString = "SELECT sh.restaurant, COUNT(sh.restaurant) as visitCount " +
                 "FROM SearchHistory sh " +
-                "JOIN Restaurant r ON sh.searchedRestaurant = r.restaurantName " +
-                "WHERE r.restaurantName = sh.searchedRestaurant";
+                "WHERE sh.user.id = :userId " +
+                "GROUP BY sh.restaurant.restaurantId " +
+                "ORDER BY visitCount DESC";
 
-        TypedQuery<Restaurant> query = entityManager.createQuery(queryString, Restaurant.class);
-        List<Restaurant> resultList = query.getResultList();
-        return resultList;
+        TypedQuery<Object[]> query = entityManager.createQuery(queryString, Object[].class);
+        query.setParameter("userId", userID);
+        List<Object[]> resultList = query.getResultList();
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        for (Object[] result : resultList) {
+            Restaurant restaurant = (Restaurant) result[0];
+            restaurants.add(restaurant);
+        }
+        return restaurants;
     }
+
 }
+
+
+

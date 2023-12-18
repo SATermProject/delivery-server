@@ -35,8 +35,8 @@ public class ReviewRecommendationStrategy implements RecommendationStrategy{
         // 긍정적 키워드에 해당하는 리뷰 개수 카운트
         String positiveQueryString = "SELECT r.restaurant.restaurantId, COUNT(r.id) " +
                 "FROM Review r " +
-                "WHERE (" + String.join(" OR ", Arrays.stream(positiveKeywords).map(keyword -> "r.content LIKE '%" + keyword + "%'").toArray(String[]::new)) + ") " +
-                "GROUP BY r.restaurant.restaurantId";
+                "WHERE (" + String.join(" OR ", Arrays.stream(positiveKeywords).map(keyword -> "r.content LIKE '%" + keyword + "%'").toArray(String[]::new)) + ") "
+                + "GROUP BY r.restaurant.restaurantId";
 
         TypedQuery<Object[]> positiveQuery = entityManager.createQuery(positiveQueryString, Object[].class);
         List<Object[]> positiveResultList = positiveQuery.getResultList();
@@ -44,8 +44,8 @@ public class ReviewRecommendationStrategy implements RecommendationStrategy{
         // 부정적 키워드에 해당하는 리뷰 개수 카운트
         String negativeQueryString = "SELECT r.restaurant.restaurantId, COUNT(r.id) " +
                 "FROM Review r " +
-                "WHERE (" + String.join(" OR ", Arrays.stream(negativeKeywords).map(keyword -> "r.content LIKE '%" + keyword + "%'").toArray(String[]::new)) + ") " +
-                "GROUP BY r.restaurant.restaurantId";
+                "WHERE (" + String.join(" OR ", Arrays.stream(negativeKeywords).map(keyword -> "r.content LIKE '%" + keyword + "%'").toArray(String[]::new)) + ") "
+                + "GROUP BY r.restaurant.restaurantId";
 
         TypedQuery<Object[]> negativeQuery = entityManager.createQuery(negativeQueryString, Object[].class);
         List<Object[]> negativeResultList = negativeQuery.getResultList();

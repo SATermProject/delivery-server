@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Restaurant;
 import com.example.demo.model.SearchHistory;
+import com.example.demo.model.User;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.RestaurantRepository;
 import com.example.demo.repository.SearchHistoryRepository;
@@ -44,8 +45,11 @@ public class SearchService {
     }
 
 
-    public void addSearchedStoreToSearchHistory(String searchedStoreName) {
+    public void addSearchedStoreToSearchHistory(String searchedStoreName, Restaurant restaurant, User user) {
         SearchHistory searchHistory = new SearchHistory();
+
+        searchHistory.setUser(user);
+        searchHistory.setRestaurant(restaurant);
         searchHistory.setSearchedRestaurant(searchedStoreName);
         searchHistoryRepository.save(searchHistory);
     }

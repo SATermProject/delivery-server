@@ -18,4 +18,12 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<OrderHistory> orderHistories;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<SearchHistory> searchHistories;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Restaurant> restaurants;
 }

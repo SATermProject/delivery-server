@@ -27,6 +27,10 @@ public class Restaurant {
     @Column(name = "category_Name")
     private String categoryName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Food> foods;
@@ -56,4 +60,5 @@ public class Restaurant {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
+
 }
