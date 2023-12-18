@@ -16,16 +16,17 @@ public class SearchController {
     private SearchService searchService;
 
     @GetMapping("/search")
-    public ResponseEntity<List<String>> findStoreNamesByKeyword(@RequestParam(value = "keyword") String keyword) {
+    public ResponseEntity<List<Restaurant>> findRestaurantByKeyword(@RequestParam(value = "keyword") String keyword) {
 
-        List<String> mergedStoreNames = searchService.findStoreNamesByKeyword(keyword);
+        List<Restaurant> foundRestaurants = searchService.findRestaurantByKeyword(keyword);
 
-        if (!mergedStoreNames.isEmpty()) {
-            return ResponseEntity.ok(mergedStoreNames);
+        if (!foundRestaurants.isEmpty()) {
+            return ResponseEntity.ok(foundRestaurants);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 
 
     @PostMapping("/search/saveSearchHistory")

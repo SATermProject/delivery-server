@@ -28,19 +28,19 @@ public class SearchService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public List<String> findStoreNamesByKeyword(String keyword) {
+    public List<Restaurant> findRestaurantByKeyword(String keyword) {
+
         String formattedKeyword = "%" + keyword + "%";
-        List<String> foodStoreNames = foodRepository.findByRestaurantNamesFromFoodContaining(formattedKeyword);
-        List<String> storeStoreNames = restaurantRepository.findByRestaurantNamesFromRestaurantContaining(formattedKeyword);
 
-        List<String> mergedStoreNames = new ArrayList<>(foodStoreNames);
-        mergedStoreNames.addAll(storeStoreNames);
+        List<com.example.demo.model.Restaurant> foodStores = foodRepository.findRestaurantsByRestaurantNamesFromFoodContaining(formattedKeyword);
+        List<com.example.demo.model.Restaurant> storeStores = restaurantRepository.findRestaurantsByRestaurantNamesFromRestaurantContaining(formattedKeyword);
 
-        Set<String> uniqueStoreNames = new HashSet<>();
-        uniqueStoreNames.addAll(foodStoreNames);
-        uniqueStoreNames.addAll(storeStoreNames);
+        List<com.example.demo.model.Restaurant> mergedStores = new ArrayList<>(foodStores);
+        mergedStores.addAll(storeStores);
 
-        return new ArrayList<>(uniqueStoreNames);
+        Set<com.example.demo.model.Restaurant> uniqueStores = new HashSet<>(mergedStores);
+
+        return new ArrayList<>(uniqueStores);
     }
 
 
