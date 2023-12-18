@@ -29,6 +29,7 @@ public class Restaurant {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
@@ -43,8 +44,8 @@ public class Restaurant {
     @JsonIgnore
     private List<OrderHistory> orderHistories;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
+    @JsonIgnore
     private List<SearchHistory> searchHistories;
 
     public Long getRestaurantId() {
